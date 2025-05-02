@@ -1,13 +1,9 @@
 #include <iostream>
-#include <cctype>
-#include <cstring>
-#include <cstdlib>
+#include <fstream>
+#include <string>
+#include "soda.h"
 using namespace std;
 
-const int MAX_CHARS = 128;
-
-int main() {
-  char storage[MAX_CHARS];
-  
+int main() { 
   return 0;
 }
