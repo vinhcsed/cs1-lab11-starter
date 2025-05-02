@@ -21,7 +21,7 @@
    - `quantity` (int)
 * The program should read from a file called `inventory.txt`. Each line of the file represents a drink, its cost, and its quantity delimited by spaces.
    - The first line of the file is an integer representing how many soda varieties are present
-   - The inventory retrieved from the text file should be stored as **dynamically allocated array of structures** (perfectly sized to fit the number of soda varieties)
+   - The inventory retrieved from the text file should be stored as a **dynamically allocated array of structures** (perfectly sized to fit the number of soda varieties)
 * Before receiving user input, the program should display a menu detailing the available drinks (numbered in the order they were read from the text file), their costs (in dollar format), and quantity in an aligned fashion.
    - Soda names contain no more than 14 characters
 * The user should be able to select a drink (by entering its corresponding number) or quit (by entering -1).
