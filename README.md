@@ -27,7 +27,7 @@
 * The user should be able to select a drink (by entering its corresponding number) or quit (by entering -1).
    - If the user enters an invalid menu selection, they should be re-prompted for another selection
    - If the user selects a drink that is out of stock, they should be re-prommpted for another selection
-* After selecting a drink, the user should be able to input the amount of money they want to insert to pay
+* After selecting a drink, the user should be able to input the amount of money they want to insert to pay.
    - This machine only accepts non-zero values less than or equal to $5.00 
    - If the user enters an invalid or insufficient money amount, they should be re-prompted for a valid amount
    - If the user enters a sufficient money amount, the quantity of the selected drink should be decremented and the leftover change should be displayed in dollar format
