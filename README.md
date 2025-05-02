@@ -1,4 +1,4 @@
-# CS1: Lab 10
+# CS1: Lab 11
 
 ## Setup
 1. Update the contents of *ID.txt* with your identifier (school email **without @school.edu**).
@@ -12,178 +12,102 @@
    - Open a Terminal. Type `make` and press return. Your program should compile and run.
 
 ## Assignment Specification
-### String Cheese
-* Implement this program in `main.cpp`.
-* The program initially prompts the user for a string.
-   - This string may include spaces
-   - The input should be stored as a C-String
-   - The input string will have a maximum of 128 characters
-* The program should display a menu with several options:
-   - **Inverse String** - changes lowercase characters to uppercase and vice versa
-   - **Reverse String** - reverses the order of characters in the string
-   - **To Uppercase** - converts all alphabetic characters to uppercase
-   - **Count Consonants** - displays the number of consonant (non-vowel) characters in the string
-   - **Count Words** - displays the number of words in the string
-   - **Change String** - update the string 
-   - **Print** - displays the string
-   - **Quit** - terminate the program
-* After an option is selected, the corresponding operation should be performed and the program should print a short status message.
-* Note that Inverse String, Reverse String, To Uppercase, and Change String *do not output anything to the terminal*; they are directly modifying the string.
-* If the user selects an invalid menu option, they should be continuously prompted until a valid option is entered. Otherwise, the user may manipulate the string until they quit the program.
+### Soda Pop
+* Implement this program in `soda.h` and `main.cpp`.
+* This program simulates a soda machine.
+* Declare a structure called `Soda` in `soda.h` with the following members:
+   - `name` (string)
+   - `price` (double)
+   - `quantity` (int)
+* The program should read from a file called `inventory.txt`. Each line of the file represents a drink, its cost, and its quantity delimited by spaces.
+   - The first line of the file is an integer representing how many soda varieties are present
+   - The inventory retrieved from the text file should be stored as **dynamically allocated array of structures** (perfectly sized to fit the number of soda varieties)
+* Before receiving user input, the program should display a menu detailing the available drinks (numbered in the order they were read from the text file), their costs (in dollar format), and quantity in an aligned fashion.
+   - Soda names contain no more than 14 characters
+* The user should be able to select a drink (by entering its corresponding number) or quit (by entering -1).
+   - If the user enters an invalid menu selection, they should be re-prompted for another selection
+   - If the user selects a drink that is out of stock, they should be re-prommpted for another selection
+* After selecting a drink, the user should be able to input the amount of money they want to insert to pay
+   - This machine only accepts non-zero values less than or equal to $5.00 
+   - If the user enters an invalid or insufficient money amount, they should be re-prompted for a valid amount
+   - If the user enters a sufficient money amount, the quantity of the selected drink should be decremented and the leftover change should be displayed in dollar format
+* When the user quits, the program should display the total revenue earned by the soda machine in dollar format.
+* Before the program exits, the remaining inventory should be written back to `inventory.txt` in the same format it was read.
 
 ### Other Requirements
-* The starter code provides exactly one C-String called *storage*. No other C-Strings should be declared in your program.
-* No additional libraries should be included other than those provided in the starter code. 
+* Your program should be able to read any file formatted like `inventory.txt`. In other words, the program should successfully run using a file with an arbitrary number of inventory items with any names, prices, and quantities.
+* The starter code provides several suggested function prototypes as a guide.
 * Your program logic must be organized into functions; you will be graded on code cleanliness and design.
 
 #### Example
 ```
-Enter a string: bun paTTy ketchup must4rD p1ckLes oni0n Lettuce chee5e t0Mato bun
+1) Cola          $1.50    Qty: 30
+2) Root_Beer     $1.40    Qty: 20
+3) Orange_Soda   $1.65    Qty: 25
+4) Seltzer_Water $0.95    Qty: 1
+5) Ginger_Ale    $2.05    Qty: 15
 
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-5) Change String
-6) Print
-7) Quit
-Enter a choice: 99
-Invalid choice, please try again: 1
-String has been inverted.
+Select a soda or -1 to quit: 9
+Invalid selection, please try again: 1
+Enter money to insert: 10.00
+This machine only accepts $5.00 or less
+Enter money to insert: -2.00
+Please enter a positive, non-zero dollar amount
+Enter money to insert: 2.00
+Change: $0.50
 
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-6) Change String
-7) Print
-8) Quit
-Enter a choice: 7
-BUN PAttY KETCHUP MUST4Rd P1CKlES ONI0N lETTUCE CHEE5E T0mATO BUN
+1) Cola          $1.50    Qty: 30
+2) Root_Beer     $1.40    Qty: 20
+3) Orange_Soda   $1.65    Qty: 25
+4) Seltzer_Water $0.95    Qty: 1
+5) Ginger_Ale    $2.05    Qty: 15
 
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-6) Change String
-7) Print
-8) Quit
-Enter a choice: 2
-String has been reversed.
+Select a soda or -1 to quit: 4
+Enter money to insert: 0.50
+Insufficient funds
+Enter money to insert: 1.00
+Change: $0.05
 
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-6) Change String
-7) Print
-8) Quit
-Enter a choice: 7
-NUB OTAm0T E5EEHC ECUTTEl N0INO SElKC1P dR4TSUM PUHCTEK YttAP NUB
+1) Cola          $1.50    Qty: 30
+2) Root_Beer     $1.40    Qty: 20
+3) Orange_Soda   $1.65    Qty: 25
+4) Seltzer_Water $0.95    Qty: 1
+5) Ginger_Ale    $2.05    Qty: 15
 
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-6) Change String
-7) Print
-8) Quit
-Enter a choice: 3
-String has been converted to uppercase.
+Select a soda or -1 to quit: 4
+Seltzer Water is out of stock.
+Select a soda or -1 to quit: 3
+Enter money to insert: 5.00
+Change: $3.35
 
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-6) Change String
-7) Print
-8) Quit
-Enter a choice: 7
-NUB OTAM0T E5EEHC ECUTTEL N0INO SELKC1P DR4TSUM PUHCTEK YTTAP NUB
+1) Cola          $1.50    Qty: 30
+2) Root_Beer     $1.40    Qty: 20
+3) Orange_Soda   $1.65    Qty: 25
+4) Seltzer_Water $0.95    Qty: 1
+5) Ginger_Ale    $2.05    Qty: 15
 
+Select a soda or -1 to quit: -1
+Total Revenue: $4.10
+```
 
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-6) Change String
-7) Print
-8) Quit
-Enter a choice: 4
-String has 34 consonants.
+#### `inventory.txt` BEFORE
+```
+5
+Cola 1.5 30
+Root_Beer 1.4 20
+Orange_Soda 1.65 25
+Seltzer_Water 0.95 1
+Ginger_Ale 2.05 15
+```
 
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-6) Change String
-7) Print
-8) Quit
-Enter a choice: 5
-String has 10 words.
-
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-6) Change String
-7) Print
-8) Quit
-Enter a choice: 6
-Enter a string: chum
-
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-6) Change String
-7) Print
-8) Quit
-Enter a choice: 7
-chum
-
-String Menu
-—------------------
-1) Inverse String
-2) Reverse String
-3) To Uppercase
-4) Count Consonants
-5) Count Words
-6) Change String
-7) Print
-8) Quit
-Enter a choice: 8
-
+#### `inventory.txt` AFTER
+```
+5
+Cola 1.5 29
+Root_Beer 1.4 20
+Orange_Soda 1.65 24
+Seltzer_Water 0.95 0
+Ginger_Ale 2.05 15
 ```
 
 ## Submission
